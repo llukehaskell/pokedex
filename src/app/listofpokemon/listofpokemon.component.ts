@@ -11,7 +11,8 @@ export class ListofpokemonComponent implements OnInit{
   //pokemons:PokemonComponent = [];
 
   constructor(pokeapi: PokeapiService) {
-    pokeapi.callAPI(1);
+    // pokeapi.callAPI(1);
+    pokeapi.getPokemons(1, 9); //inclusive
   }
   
   
