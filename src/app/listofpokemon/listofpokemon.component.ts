@@ -8,15 +8,13 @@ import { PokeapiService } from '../pokeapi.service';
   styleUrls: ['./listofpokemon.component.css']
 })
 export class ListofpokemonComponent implements OnInit{
-  //pokemons:PokemonComponent = [];
+  public pokelist: PokemonComponent[] = [];
 
   constructor(pokeapi: PokeapiService) {
-    // pokeapi.callAPI(1);
-    pokeapi.getPokemons(1, 9); //inclusive
+    this.pokelist = pokeapi.getPokemons(1, 9); //inclusive
+    console.log(this.pokelist);
   }
   
-  
-  
-  ngOnInit(): void { }
-
+  ngOnInit(): void { 
+  }
 }

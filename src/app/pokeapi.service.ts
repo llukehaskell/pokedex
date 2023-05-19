@@ -8,25 +8,31 @@ import { PokemonComponent } from './pokemon/pokemon.component';
 })
 export class PokeapiService {
 
-  private data:any;
-  constructor(private http: HttpClient) { }
-
-  
+  private pokelist: PokemonComponent[] = [];
+  constructor(private http: HttpClient) { } //idk why http is special and needs to be initialized here but ok
+    
   getPokemons(idxStart: number, idxEnd: number) {
-    let tmp: PokemonComponent;
-    // let returnArray: PokemonComponent = [];
-  
     for (let i = idxStart; i < (idxEnd + 1); ++i) {
       this.callAPI(i);
-      
     }
+    return this.pokelist;
   }
   
   callAPI(x: number) {
-    return this.http.get<JSON>('https://pokeapi.co/api/v2/pokemon-species/' + x).subscribe((res) => {
-      this.data = res;
+    this.http.get<JSON>('https://pokeapi.co/api/v2/pokemon/' + x).subscribe((res) => {
+      let data: any = res;
+      let tmpmon: PokemonComponent = new PokemonComponent; // new PokeComp is needed here for class vars & methods to exist
       
-      console.log(this.data.name);
+      //all of these don't seem to care they're supposed to be a certain type, theyll just be anything if u want. weird
+      tmpmon.setIdx(+(data.id));
+      tmpmon.setName(String(data.name));
+      tmpmon.setTypeA(data.types[0].type.name); 
+      if (Object.keys(data.types).length == 2) {
+        tmpmon.setTypeB(data.types[1].type.name);
+      }
+      
+      this.pokelist.push(tmpmon);
+      // console.log(this.pokelist);
     });
   }
 }
