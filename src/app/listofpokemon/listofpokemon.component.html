@@ -1,2 +1,8 @@
-<p>listofpokemon works!</p>
-<p *ngIf="pokelist[0]">{{pokelist[0].getName()}}</p>
+<ul *ngIf="pokelist">
+    <li *ngFor="let poke of pokelist">
+        <p *ngIf="poke">{{poke.getIdx()}}</p>
+        <p *ngIf="poke">{{poke.getName()}}</p>
+        <p *ngIf="poke">{{poke.getTypeA()}}</p>
+        <p *ngIf="poke.getNumTypes() == 2">{{poke.getTypeB()}}</p>
+    </li>
+</ul>
