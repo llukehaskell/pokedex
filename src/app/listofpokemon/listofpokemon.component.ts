@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonComponent } from '../pokemon/pokemon.component';
+import { PokemonComponent, poketype } from '../pokemon/pokemon.component';
 import { PokeapiService } from '../pokeapi.service';
 import { tap } from 'rxjs';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+export interface Entry {
+  cols: number;
+  rows: number;
+  text: string;
+}
 
 @Component({
   selector: 'app-listofpokemon',
@@ -10,16 +17,20 @@ import { tap } from 'rxjs';
 })
 export class ListofpokemonComponent implements OnInit{
   data: any = {};// "= {}" gets rid of the console undefined errors
-  public pokelist: any = [];
+  public pokelist = new Array<any>(0);
+
+  loweri = 1;
+  upperi = 2;
 
   constructor(private pokeapi: PokeapiService) { }
   
   ngOnInit(): void {
-    for (let i = 1; i < 10; ++i) {
+    console.log(poketype.FIRE);
+    for (let i = this.loweri; i < this.upperi; ++i) {
       this.pokeapi.getPokemons(i).pipe(tap((res) => {
         this.data = res;
         let tmpmon: PokemonComponent = new PokemonComponent; // new PokeComp is needed here for class vars & methods to exist
-        
+
         //all of these don't seem to care they're supposed to be a certain type, theyll just be anything if u want. weird
         tmpmon.setIdx(+(this.data.id));
         tmpmon.setName(String(this.data.name));
@@ -28,12 +39,20 @@ export class ListofpokemonComponent implements OnInit{
         if (tmpmon.getNumTypes() == 2) {
           tmpmon.setTypeB(this.data.types[1].type.name);
         }
-        
-        //https://medium.com/compendium/5-helpful-rxjs-solutions-d34f7c2f1cd9
+        tmpmon.setSprite(this.data.sprites.front_default);
 
-        this.pokelist.push(tmpmon);
+        this.pokelist[i - 1] = tmpmon; //i guess this just works with the way i initiallized the "Array" (actually vector?)
         console.log(this.pokelist);
       })).subscribe();
     }
   }
+
+  tiles: Entry[] = [
+    {text: 'sprite', cols: 3, rows: 18},
+    {text: 'Types', cols: 4, rows: 3},
+    {text: 'height', cols: 4, rows: 3},
+    {text: 'idx', cols: 1, rows: 3},
+    {text: 'Two', cols: 3, rows: 15},
+    {text: 'Three', cols: 6, rows: 15},
+  ];
 }

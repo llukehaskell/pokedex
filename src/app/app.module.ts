@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ListofpokemonComponent } from './listofpokemon/listofpokemon.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { PokeapiService } from './pokeapi.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { PokeapiService } from './pokeapi.service';
     BrowserModule,
     AppRoutingModule,
     
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatGridListModule
   ],
   providers: [
     PokeapiService
