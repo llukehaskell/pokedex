@@ -7,38 +7,36 @@
         <p *ngIf="poke.getNumTypes() == 2">{{poke.getTypeB()}}</p>
     </li>
 </ul> -->
-<mat-grid-list cols="12" rowHeight="6:1" div class="gridlist" *ngIf="pokelist[loweri - 1]">
-    <mat-grid-tile div class="blackbg" 
+<div class *ngIf="pokelist">
+<mat-grid-list *ngFor="let poke of pokelist"
+cols="12" rowHeight="6:1">
+    <div class ng-app style="background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getTypeB()}})">
+    <mat-grid-tile
     [colspan]="tiles[0].cols"
     [rowspan]="tiles[0].rows">
-    <img  src="{{pokelist[loweri - 1].getSprite()}}" div class="sprite">
+    <img  src="{{poke.getSprite()}}" div class="contentSprite">{{poke.getTypeA()}} {{poke.getTypeB()}}
     </mat-grid-tile>
-    <mat-grid-tile div class="blackbg" 
+    <mat-grid-tile
     [colspan]="tiles[1].cols"
     [rowspan]="tiles[1].rows">
     </mat-grid-tile>
-    <mat-grid-tile div class="blackbg" 
+    <mat-grid-tile 
     [colspan]="tiles[2].cols"
     [rowspan]="tiles[2].rows">
     </mat-grid-tile>
     <mat-grid-tile div class="tileIdx" 
     [colspan]="tiles[3].cols"
     [rowspan]="tiles[3].rows">
-    <p div class="contentIdx">{{pokelist[loweri - 1].getIdx()}}</p>
+    <p div class="contentIdx">{{poke.getIdx()}}</p>
     </mat-grid-tile>
-    <mat-grid-tile div class="blackbg" 
+    <mat-grid-tile
     [colspan]="tiles[4].cols"
     [rowspan]="tiles[4].rows">
     </mat-grid-tile>
-    <mat-grid-tile div class="blackbg" 
+    <mat-grid-tile 
     [colspan]="tiles[5].cols"
     [rowspan]="tiles[5].rows">
-</mat-grid-tile>
-
-    <!-- <mat-grid-tile
-        *ngFor="let tile of tiles"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows">
-      {{tile.text}}
-    </mat-grid-tile> -->
-  </mat-grid-list>
+    </mat-grid-tile>
+    </div>
+</mat-grid-list>
+<!-- </div> -->

@@ -2,25 +2,25 @@ import { Component, Inject } from '@angular/core';
 
 //i think this is prolly useless, might have to make it a class but at that point idrc i can just store the types as strings
 export enum poketype {
-  NONE =      '#FFFFFF', //  0
-  NORMAL =    '#A8A77A', //  1
-  FIRE =      '#EE8130', //  2
-  WATER =     '#6390F0', //  3
-  GRASS =     '#7AC74C', //  4
-  ELECTRIC =  '#F7D02C', //  5
-  ICE =       '#96D9D6', //  6
-  FIGHTING =  '#C22E28', //  7
-  POISON =    '#A33EA1', //  8
-  GROUND =    '#E2BF65', //  9
-  FLYING =    '#A98FF3', // 10
-  PSYCHIC =   '#F95587', // 11
-  BUG =       '#A6B91A', // 12
-  ROCK =      '#B6A136', // 13
-  GHOST =     '#735797', // 14
-  DRAGON =    '#6F35FC', // 15
-  DARK =      '#705746', // 16
-  STEEL =     '#B7B7CE', // 17
-  FAIRY =     '#D685AD', // 18
+  "NONE" =      '#FFFFFF', //  0
+  "normal" =    '#A8A77A', //  1
+  "fire" =      '#EE8130', //  2
+  "water" =     '#6390F0', //  3
+  "grass" =     '#7AC74C', //  4
+  "electric" =  '#F7D02C', //  5
+  "ice" =       '#96D9D6', //  6
+  "fighting" =  '#C22E28', //  7
+  "poison" =    '#A33EA1', //  8
+  "ground" =    '#E2BF65', //  9
+  "flying" =    '#A98FF3', // 10
+  "psychic" =   '#F95587', // 11
+  "bug" =       '#A6B91A', // 12
+  "rock" =      '#B6A136', // 13
+  "ghost" =     '#735797', // 14
+  "dragon" =    '#6F35FC', // 15
+  "dark" =      '#705746', // 16
+  "steel" =     '#B7B7CE', // 17
+  "fairy" =     '#D685AD', // 18
 } 
 
 @Component({

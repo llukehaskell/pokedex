@@ -19,13 +19,13 @@ export class ListofpokemonComponent implements OnInit{
   data: any = {};// "= {}" gets rid of the console undefined errors
   public pokelist = new Array<any>(0);
 
+  public color = 'lightblue';
   loweri = 1;
-  upperi = 2;
+  upperi = 10;
 
   constructor(private pokeapi: PokeapiService) { }
   
   ngOnInit(): void {
-    console.log(poketype.FIRE);
     for (let i = this.loweri; i < this.upperi; ++i) {
       this.pokeapi.getPokemons(i).pipe(tap((res) => {
         this.data = res;
@@ -41,11 +41,38 @@ export class ListofpokemonComponent implements OnInit{
         }
         tmpmon.setSprite(this.data.sprites.front_default);
 
+        // this.assignTypeA(i - 1);
+        // this.assignTypeB(i - 1);
         this.pokelist[i - 1] = tmpmon; //i guess this just works with the way i initiallized the "Array" (actually vector?)
-        console.log(this.pokelist);
+        // console.log(this.pokelist);
       })).subscribe();
     }
   }
+
+  // assignTypeA(x: number) {
+  //   switch (this.pokelist[x].getTypeA()) {
+  //     case "normal" : {this.pokelist[x].setTypeA(poketype.NORMAL); break;}
+  //     case "fire" : {this.pokelist[x].setTypeA(poketype.FIRE); break;}
+  //     case "water" : {this.pokelist[x].setTypeA(poketype.WATER); break;}
+  //     case "grass" : {this.pokelist[x].setTypeA(poketype.GRASS); break;}
+  //     case "poison" : {this.pokelist[x].setTypeA(poketype.POISON); break;}
+  //     case "flying" : {this.pokelist[x].setTypeA(poketype.FLYING); break;}
+
+  //     default: {this.pokelist[x].setTypeA(poketype.FLYING); break;}
+  //   } 
+  // }
+
+  // assignTypeB(x: number) {
+  //   switch (this.pokelist[x].getTypeB()) {
+  //     case "fire" : {this.pokelist[x].setTypeB(poketype.FIRE); break;}
+  //     case "water" : {this.pokelist[x].setTypeB(poketype.WATER); break;}
+  //     case "grass" : {this.pokelist[x].setTypeB(poketype.GRASS); break;}
+  //     case "poison" : {this.pokelist[x].setTypeB(poketype.POISON); break;}
+  //     case "flying" : {this.pokelist[x].setTypeB(poketype.FLYING); break;}
+
+  //     default: {this.pokelist[x].setTypeA(poketype.FLYING); break;}
+  //   } 
+  // }
 
   tiles: Entry[] = [
     {text: 'sprite', cols: 3, rows: 18},
