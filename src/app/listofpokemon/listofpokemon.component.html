@@ -9,12 +9,12 @@
 </ul> -->
 <div class *ngIf="pokelist">
 <mat-grid-list *ngFor="let poke of pokelist"
-cols="12" rowHeight="6:1">
-    <div class ng-app style="background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getTypeB()}})">
+cols="12" rowHeight="6:1"
+ng-app style="background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getTypeB()}})"> <!-- i have no idea why theres 4 errors here but it works -->
     <mat-grid-tile
     [colspan]="tiles[0].cols"
     [rowspan]="tiles[0].rows">
-    <img  src="{{poke.getSprite()}}" div class="contentSprite">{{poke.getTypeA()}} {{poke.getTypeB()}}
+    <img  src="{{poke.getSprite()}}" div class="contentSprite">
     </mat-grid-tile>
     <mat-grid-tile
     [colspan]="tiles[1].cols"
@@ -37,6 +37,5 @@ cols="12" rowHeight="6:1">
     [colspan]="tiles[5].cols"
     [rowspan]="tiles[5].rows">
     </mat-grid-tile>
-    </div>
 </mat-grid-list>
 <!-- </div> -->

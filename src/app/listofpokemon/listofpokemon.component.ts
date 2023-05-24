@@ -35,44 +35,21 @@ export class ListofpokemonComponent implements OnInit{
         tmpmon.setIdx(+(this.data.id));
         tmpmon.setName(String(this.data.name));
         tmpmon.setNumTypes(Object.keys(this.data.types).length);
-        tmpmon.setTypeA(this.data.types[0].type.name); 
+
+        tmpmon.setTypeA((<any>poketype)[this.data.types[0].type.name]); //this is kinda silly        
+        
         if (tmpmon.getNumTypes() == 2) {
-          tmpmon.setTypeB(this.data.types[1].type.name);
+          tmpmon.setTypeB((<any>poketype)[this.data.types[1].type.name]);
+        }
+        else { //this is a little hacky but im just using it to get the color.
+          tmpmon.setTypeB((<any>poketype)[this.data.types[0].type.name]);
         }
         tmpmon.setSprite(this.data.sprites.front_default);
-
-        // this.assignTypeA(i - 1);
-        // this.assignTypeB(i - 1);
         this.pokelist[i - 1] = tmpmon; //i guess this just works with the way i initiallized the "Array" (actually vector?)
         // console.log(this.pokelist);
       })).subscribe();
     }
   }
-
-  // assignTypeA(x: number) {
-  //   switch (this.pokelist[x].getTypeA()) {
-  //     case "normal" : {this.pokelist[x].setTypeA(poketype.NORMAL); break;}
-  //     case "fire" : {this.pokelist[x].setTypeA(poketype.FIRE); break;}
-  //     case "water" : {this.pokelist[x].setTypeA(poketype.WATER); break;}
-  //     case "grass" : {this.pokelist[x].setTypeA(poketype.GRASS); break;}
-  //     case "poison" : {this.pokelist[x].setTypeA(poketype.POISON); break;}
-  //     case "flying" : {this.pokelist[x].setTypeA(poketype.FLYING); break;}
-
-  //     default: {this.pokelist[x].setTypeA(poketype.FLYING); break;}
-  //   } 
-  // }
-
-  // assignTypeB(x: number) {
-  //   switch (this.pokelist[x].getTypeB()) {
-  //     case "fire" : {this.pokelist[x].setTypeB(poketype.FIRE); break;}
-  //     case "water" : {this.pokelist[x].setTypeB(poketype.WATER); break;}
-  //     case "grass" : {this.pokelist[x].setTypeB(poketype.GRASS); break;}
-  //     case "poison" : {this.pokelist[x].setTypeB(poketype.POISON); break;}
-  //     case "flying" : {this.pokelist[x].setTypeB(poketype.FLYING); break;}
-
-  //     default: {this.pokelist[x].setTypeA(poketype.FLYING); break;}
-  //   } 
-  // }
 
   tiles: Entry[] = [
     {text: 'sprite', cols: 3, rows: 18},
