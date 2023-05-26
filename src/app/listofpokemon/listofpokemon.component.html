@@ -1,15 +1,7 @@
-<!-- <ul *ngIf="pokelist">
-    <li *ngFor="let poke of pokelist">
-        <img src="{{poke.getSprite()}}">
-        <p *ngIf="poke">{{poke.getIdx()}}</p>
-        <p *ngIf="poke">{{poke.getName()}}</p>
-        <p *ngIf="poke">{{poke.getTypeA()}}</p>
-        <p *ngIf="poke.getNumTypes() == 2">{{poke.getTypeB()}}</p>
-    </li>
-</ul> -->
+<body>
 <div class *ngIf="pokelist">
 <mat-grid-list *ngFor="let poke of pokelist"
-cols="12" rowHeight="6:1"
+cols="10" rowHeight="9px"
 ng-app style="background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getTypeB()}})"> <!-- i have no idea why theres 4 errors here but it works -->
     <mat-grid-tile
     [colspan]="tiles[0].cols"
@@ -38,4 +30,14 @@ ng-app style="background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getT
     [rowspan]="tiles[5].rows">
     </mat-grid-tile>
 </mat-grid-list>
-<!-- </div> -->
+</div>
+</body>
+<!-- <ul *ngIf="pokelist">
+    <li *ngFor="let poke of pokelist">
+        <img src="{{poke.getSprite()}}">
+        <p *ngIf="poke">{{poke.getIdx()}}</p>
+        <p *ngIf="poke">{{poke.getName()}}</p>
+        <p *ngIf="poke">{{poke.getTypeA()}}</p>
+        <p *ngIf="poke.getNumTypes() == 2">{{poke.getTypeB()}}</p>
+    </li>
+</ul> -->

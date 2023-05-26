@@ -1,13 +1,19 @@
+body {
+    text-align: center;
+}
+
 mat-grid-list {
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-bottom: 40px;
+    margin-left: 35px;
+    margin-right:35px;
+    padding-left: 710px;
+    margin-bottom: 35px;
+    display: inline-flex;
     /* background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getTypeB()}}) */
 }
 
 mat-grid-tile {
     border-style: solid;
-    border-radius: 8px;
+    border-radius: 1px;
     border-width: 1px;
     /* background-color:rgb(255, 255, 255, 0.15) */
 }

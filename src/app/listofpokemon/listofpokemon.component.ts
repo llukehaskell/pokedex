@@ -21,7 +21,7 @@ export class ListofpokemonComponent implements OnInit{
 
   public color = 'lightblue';
   loweri = 1;
-  upperi = 10;
+  upperi = 11;
 
   constructor(private pokeapi: PokeapiService) { }
   
@@ -53,8 +53,8 @@ export class ListofpokemonComponent implements OnInit{
 
   tiles: Entry[] = [
     {text: 'sprite', cols: 3, rows: 18},
-    {text: 'Types', cols: 4, rows: 3},
-    {text: 'height', cols: 4, rows: 3},
+    {text: 'Types', cols: 3, rows: 3},
+    {text: 'height', cols: 3, rows: 3},
     {text: 'idx', cols: 1, rows: 3},
     {text: 'Two', cols: 3, rows: 15},
     {text: 'Three', cols: 6, rows: 15},
