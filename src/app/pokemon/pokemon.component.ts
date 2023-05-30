@@ -36,6 +36,7 @@ export class PokemonComponent {
     @Inject(poketype) private typeA = poketype.NONE,
     @Inject(poketype) private typeB = poketype.NONE,
     @Inject(String) private sprite = "https://curie.pnnl.gov/sites/default/files/default_images/default-image_0.jpeg",
+    @Inject(Number) private stats = [0, 0, 0, 0, 0, 0], //[hp, atk, def, spatk, spdef, speed]
   ) { } //note @Inject syntax for types
 
   //setters
@@ -45,6 +46,7 @@ export class PokemonComponent {
   public setTypeA(typea: poketype) {this.typeA = typea;}
   public setTypeB(typeb: poketype) {this.typeB = typeb;}
   public setSprite(sprite: string) {this.sprite = sprite;}
+  public setStat(stat: number, i: number) {this.stats[i] = stat;}
 
   //getters
   public getName() {return this.name;}
@@ -52,5 +54,8 @@ export class PokemonComponent {
   public getNumTypes() {return this.numTypes;}
   public getTypeA() {return this.typeA;}
   public getTypeB() {return this.typeB;}
+  public getNameTypeA() {return Object.keys(poketype)[Object.values(poketype).indexOf(this.typeA)];}
+  public getNameTypeB() {return Object.keys(poketype)[Object.values(poketype).indexOf(this.typeB)];}
   public getSprite() {return this.sprite;}
+  public getStat(i: number) {return this.stats[i];}
 }
