@@ -2,7 +2,6 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { PokemonComponent, poketype } from '../pokemon/pokemon.component';
 import { PokeapiService } from '../pokeapi.service';
 import { tap } from 'rxjs';
-import { MatGridListModule } from '@angular/material/grid-list';
 
 export interface Entry {
   cols: number;
@@ -17,7 +16,9 @@ export interface Entry {
 export class ListofpokemonComponent implements OnInit{
   data: any = {};// "= {}" gets rid of the console undefined errors
   public pokelist = new Array<any>(0);
+  public startingIndex = 1;
   public nextPokeToAdd = 1;
+  public loadingIcon = false;
   
   constructor(private pokeapi: PokeapiService) { }
   
@@ -50,31 +51,34 @@ export class ListofpokemonComponent implements OnInit{
           tmpmon.setStat(this.data.stats[s].base_stat, s);
         }
 
-        this.pokelist[i - 1] = tmpmon; //i guess this just works with the way i initiallized the "Array" (actually vector?)
+        this.pokelist[i - this.startingIndex] = tmpmon; //i guess this just works with the way i initiallized the "Array" (actually vector?)
         console.log(this.pokelist);
       })).subscribe();
     }
   } //end of addPokemonToList
-  
-  // loadMorePokemon() {
-    //   this.addPokemonToList(this.nextPokeToAdd, this.nextPokeToAdd + 19);
-    //   this.nextPokeToAdd += 20;
-    // }
-    
-    @HostListener("window:scroll", []) // weird syntax
-    onScroll() {
-      if /*reached the bottom*/ ((window.innerHeight + window.scrollY) >= document.body.scrollHeight
-       && this.nextPokeToAdd < 1010) {
-        this.addPokemonToList(this.nextPokeToAdd, this.nextPokeToAdd + 19);
-        this.nextPokeToAdd += 20;
-      }
+   
+  reloadList() {
+    this.pokelist = [];
+    this.addPokemonToList(1,20);
+    this.nextPokeToAdd = 21;
   }
-  // setTimeout(() => {}, 5000);
+
+  @HostListener("window:scroll", []) // weird syntax
+  onScroll() {
+    if /*reached the bottom*/ ((window.innerHeight + window.scrollY) >= document.body.scrollHeight
+      && this.nextPokeToAdd < 1010) {
+      this.loadingIcon = true;
+      this.addPokemonToList(this.nextPokeToAdd, this.nextPokeToAdd + 19);
+      this.nextPokeToAdd += 20;
+      this.loadingIcon = false;
+    }
+  }
   
   tiles: Entry[] = [
-    {cols: 12, rows: 18}, //sprite
-    {cols: 8, rows: 3},  //types
+    {cols: 11, rows: 3}, //name
+    {cols: 9, rows: 3},  //types
     {cols: 4, rows: 3},  //index
-    {cols: 12, rows: 15},  //stats
+    {cols: 11, rows: 16}, //sprite
+    {cols: 13, rows: 16},  //stats
   ];
 }

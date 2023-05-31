@@ -1,39 +1,36 @@
 <body>
-<h1 div class="loadCounter">{{pokelist.length}}</h1>
-<div class *ngIf="pokelist">
-<mat-grid-list *ngFor="let poke of pokelist"
-cols="24" rowHeight="10px"
-ng-app style="background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getTypeB()}})"> <!-- i have no idea why theres 4 errors here but it works -->
-    <mat-grid-tile
-    [colspan]="tiles[0].cols"
-    [rowspan]="tiles[0].rows">
-    <img src="{{poke.getSprite()}}" div class="spriteContent">
-    </mat-grid-tile>
-    <mat-grid-tile
-    [colspan]="tiles[1].cols"
-    [rowspan]="tiles[1].rows">
-    <p>{{poke.getNameTypeA()}}</p>
-    <p *ngIf="poke.getNameTypeB() != poke.getNameTypeA()"> /{{poke.getNameTypeB()}}</p>
-    </mat-grid-tile>
-    <mat-grid-tile div class="idxTile" 
-    [colspan]="tiles[2].cols"
-    [rowspan]="tiles[2].rows">
-    <p>{{poke.getIdx()}}</p>
-    </mat-grid-tile>
-    <mat-grid-tile div class="statsTile"
-    [colspan]="tiles[3].cols"
-    [rowspan]="tiles[3].rows">
-    <p>HP: {{poke.getStat(0)}}<br>
-    ATK: {{poke.getStat(1)}}<br>
-    DEF: {{poke.getStat(2)}}<br>
-    Sp.ATK: {{poke.getStat(3)}}<br>
-    Sp.Def: {{poke.getStat(4)}}<br>
-    SPD: {{poke.getStat(5)}}</p>
-    </mat-grid-tile>
-</mat-grid-list>
-</div>
-
-<!-- <button (click)="loadMorePokemon()">LOAD MORE POKEMONZ</button> -->
+    <p style="display:inline">Staring Index</p>
+    <mat-form-field class="startingIndexInput">
+        <input matInput placeholder="Ex. 169 for Crobat" value="1">
+    </mat-form-field>
+    <button mat-raised-button color="warn" (click)="reloadList()">RELOAD</button>
+    <p>
+    <div *ngIf="pokelist">
+        <mat-grid-list *ngFor="let poke of pokelist" cols="24" rowHeight="10px" ng-app
+            style="background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getTypeB()}})"> <!-- i have no idea why theres 4 errors here but it works -->
+            <mat-grid-tile [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows">{{poke.getName().charAt(0).toUpperCase() + poke.getName().slice(1)}}
+            </mat-grid-tile>
+            <mat-grid-tile div class="typesTile" [colspan]="tiles[1].cols" [rowspan]="tiles[1].rows">
+                {{poke.getNameTypeA().toUpperCase()}}
+                <div *ngIf="poke.getNameTypeB() != poke.getNameTypeA()"> /{{poke.getNameTypeB().toUpperCase()}}</div>
+            </mat-grid-tile>
+            <mat-grid-tile div class="idxTile" [colspan]="tiles[2].cols" [rowspan]="tiles[2].rows">
+                {{poke.getIdx()}}
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="tiles[3].cols" [rowspan]="tiles[3].rows">
+                <img src="{{poke.getSprite()}}" div class="spriteContent">
+            </mat-grid-tile>
+            <mat-grid-tile div class="statsTile" [colspan]="tiles[4].cols" [rowspan]="tiles[4].rows">
+                HP: {{poke.getStat(0)}}<br>
+                ATK: {{poke.getStat(1)}}<br>
+                DEF: {{poke.getStat(2)}}<br>
+                Sp.ATK: {{poke.getStat(3)}}<br>
+                Sp.Def: {{poke.getStat(4)}}<br>
+                SPD: {{poke.getStat(5)}}
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <mat-spinner *ngIf="loadingIcon"></mat-spinner>
 
 </body>
 <!-- <ul *ngIf="pokelist">

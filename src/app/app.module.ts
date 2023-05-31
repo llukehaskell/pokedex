@@ -9,6 +9,9 @@ import { PokemonComponent } from './pokemon/pokemon.component';
 import { PokeapiService } from './pokeapi.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
     
     HttpClientModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [
     PokeapiService
