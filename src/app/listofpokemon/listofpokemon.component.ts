@@ -8,6 +8,8 @@ export interface Entry {
   rows: number;
 }
 
+let MAX_NUM_OF_POKEMON = 1010;
+
 @Component({
   selector: 'app-listofpokemon',
   templateUrl: './listofpokemon.component.html',
@@ -23,11 +25,10 @@ export class ListofpokemonComponent implements OnInit{
   constructor(private pokeapi: PokeapiService) { }
   
   ngOnInit(): void {
-    this.addPokemonToList(1,20);
-    this.nextPokeToAdd = 21;
+    this.reloadList(String(this.startingIndex));
   }
   
-  addPokemonToList(loweri: number, upperi: number) {
+  addPokemonToList(loweri: number, upperi: number) { //upperi inclusive
     for (let i = loweri; i <= upperi; ++i) {
       this.pokeapi.getPokemons(i).pipe(tap((res) => {
         this.data = res;
@@ -52,15 +53,25 @@ export class ListofpokemonComponent implements OnInit{
         }
 
         this.pokelist[i - this.startingIndex] = tmpmon; //i guess this just works with the way i initiallized the "Array" (actually vector?)
-        console.log(this.pokelist);
+        // console.log(this.pokelist);
       })).subscribe();
     }
   } //end of addPokemonToList
    
-  reloadList() {
-    this.pokelist = [];
-    this.addPokemonToList(1,20);
-    this.nextPokeToAdd = 21;
+  reloadList(atThisIdx: string) {
+    if (atThisIdx == "") { //so it still works if the input field is empty (default to 1)
+      this.startingIndex = 1;
+    } else {
+      this.startingIndex = +atThisIdx;
+    }
+
+    this.pokelist = []; //clear pokelist
+    
+    if (this.startingIndex > (MAX_NUM_OF_POKEMON - 19)) { //failsafe to not bombard the api for pokemon that don't exist
+      this.startingIndex = MAX_NUM_OF_POKEMON - 19;
+    }
+    this.addPokemonToList(this.startingIndex, this.startingIndex + 19); //upperi inclusive
+    this.nextPokeToAdd = this.startingIndex + 20;
   }
 
   @HostListener("window:scroll", []) // weird syntax

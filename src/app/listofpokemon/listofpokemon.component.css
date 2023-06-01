@@ -20,9 +20,12 @@ mat-grid-tile {
     text-align: auto;
 }
 
+.nameTile {
+    font-size: 24px;
+}
+
 .spriteContent {
-    min-height:99%;
-    min-width:99%;
+    scale: 195%;
 }
 
 .idxTile {
@@ -32,11 +35,12 @@ mat-grid-tile {
 
 .typesTile {
     font-family: 'helvetica';
-    font-size: 18px;
+    font-style: italic;
+    font-size: 16px;
 }
 
 .statsTile{
-    font-size: 24px;
+    font-size: 23px;
     text-align: right;
 }
 
