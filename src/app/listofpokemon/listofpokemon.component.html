@@ -1,9 +1,13 @@
 <body>
-    <mat-form-field class="startingIndexInput">
-        <input matInput placeholder="Starting Index" #idxInput>
-    </mat-form-field>
-    <button mat-raised-button color="warn" (click)="reloadList(idxInput.value)">RELOAD</button>
-    <p>
+    <mat-toolbar>
+        <mat-form-field class="startingIndexInput">
+            <input matInput placeholder="Starting Index" #idxInput class="inputBox" (blur)="reloadList(idxInput.value)">
+            <button *ngIf="idxInput.value" matSuffix mat-icon-button aria-label="Clear" (click)="idxInput.value = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </mat-toolbar>
+<header>
     <div *ngIf="pokelist">
         <mat-grid-list *ngFor="let poke of pokelist" cols="24" rowHeight="10px" ng-app
             style="background-image: linear-gradient({{poke.getTypeA()}}, {{poke.getTypeB()}})"> <!-- i have no idea why theres 4 errors here but it works -->
@@ -31,7 +35,7 @@
         </mat-grid-list>
     </div>
     <mat-spinner *ngIf="loadingIcon"></mat-spinner>
-
+</header>
 </body>
 <!-- <ul *ngIf="pokelist">
     <li *ngFor="let poke of pokelist">

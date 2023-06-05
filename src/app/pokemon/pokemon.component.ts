@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 
-//i think this is prolly useless, might have to make it a class but at that point idrc i can just store the types as strings
 export enum poketype {
   "NONE" =      '#FFFFFF', //  0
   "normal" =    '#A8A77A', //  1

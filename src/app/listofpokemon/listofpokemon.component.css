@@ -2,6 +2,26 @@ body {
     text-align: center;
 }
 
+mat-toolbar {
+    padding-top: 20px;
+    height: 65px;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-image: url(/assets/images/pokeball_banner.png);
+}
+
+.startingIndexInput {
+    font-family: cursive;
+    max-width: 180px;
+}
+
+header {
+    margin-top: 65px;
+    padding-top: 24px;
+    background-image: url(/assets/images/pokemon_reigons_background_opacity_0_5.png);
+}
+
 .startingIndexInput {
     padding: 20px;
 }
