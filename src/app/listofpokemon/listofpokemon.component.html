@@ -6,6 +6,7 @@
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
+        <p class="title">Pokedex</p>
     </mat-toolbar>
 <header>
     <div *ngIf="pokelist">
@@ -18,7 +19,7 @@
                 <div *ngIf="poke.getNameTypeB() != poke.getNameTypeA()"> /{{poke.getNameTypeB().toUpperCase()}}</div>
             </mat-grid-tile>
             <mat-grid-tile div class="idxTile" [colspan]="tiles[2].cols" [rowspan]="tiles[2].rows">
-                {{poke.getIdx()}}
+                #{{poke.getIdx()}}
             </mat-grid-tile>
             <mat-grid-tile [colspan]="tiles[3].cols" [rowspan]="tiles[3].rows">
                 <img src="{{poke.getSprite()}}" div class="spriteContent">
@@ -29,7 +30,7 @@
                 ATK: {{poke.getStat(1)}}<br>
                 DEF: {{poke.getStat(2)}}<br>
                 Sp.ATK: {{poke.getStat(3)}}<br>
-                Sp.Def: {{poke.getStat(4)}}<br>
+                Sp.DEF: {{poke.getStat(4)}}<br>
                 SPD: {{poke.getStat(5)}}
             </mat-grid-tile>
         </mat-grid-list>

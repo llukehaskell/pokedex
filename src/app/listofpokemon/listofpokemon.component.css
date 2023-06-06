@@ -6,24 +6,31 @@ mat-toolbar {
     padding-top: 20px;
     height: 65px;
     position: fixed;
-    top: 0;
-    z-index: 1;
+    top: 0; /* glued to top of page */
+    z-index: 1; /* lays on top of everything else */
     background-image: url(/assets/images/pokeball_banner.png);
+    background-position: center;
+    background-size: auto 65px; /* (width height) */
 }
 
 .startingIndexInput {
-    font-family: cursive;
+    display: inline-block;
+    font-family: 'Trebuchet MS';
     max-width: 180px;
+    padding: 20px;
+    size: 10%;
+}
+
+.title {
+    display: inline-block;
+    text-align: right;
 }
 
 header {
     margin-top: 65px;
     padding-top: 24px;
     background-image: url(/assets/images/pokemon_reigons_background_opacity_0_5.png);
-}
-
-.startingIndexInput {
-    padding: 20px;
+    /* background-position: center; */ /*this makes the bg freak out on loading more for some reason*/
 }
 
 mat-grid-list {
@@ -49,7 +56,7 @@ mat-grid-tile {
 }
 
 .idxTile {
-    font-family: 'helvetica';
+    font-family: 'Trebuchet MS';
     font-size: 22px;
 }
 
@@ -62,6 +69,7 @@ mat-grid-tile {
 .statsTile{
     font-size: 23px;
     text-align: right;
+    font-family: 'Trebuchet MS';
 }
 
 mat-spinner {
