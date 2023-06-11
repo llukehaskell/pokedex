@@ -5,6 +5,7 @@ body {
 mat-toolbar {
     padding-top: 20px;
     height: 65px;
+    width: 100%;
     position: fixed;
     top: 0; /* glued to top of page */
     z-index: 1; /* lays on top of everything else */
