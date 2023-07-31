@@ -9,7 +9,7 @@ mat-toolbar {
     position: fixed;
     top: 0; /* glued to top of page */
     z-index: 1; /* lays on top of everything else */
-    background-image: url(src/assets/pokeball_banner.png);
+    background-image: url(../../assets/pokeball_banner.png);
     background-position: center;
     background-size: auto 65px; /* (width height) */
 }
@@ -30,7 +30,7 @@ mat-toolbar {
 header {
     margin-top: 65px;
     padding-top: 24px;
-    background-image: url(src/assets/pokemon_reigons_background_opacity_0_5.png);
+    background-image: url("../../assets/pokemon_reigons_background_opacity_0_5.png");
     /* background-position: center; */ /*this makes the bg freak out on loading more for some reason*/
 }
 
